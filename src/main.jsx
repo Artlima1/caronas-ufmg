@@ -10,6 +10,7 @@ import CaronasDisponiveis from "./Pages/CaronasDisponiveis/CaronasDisponiveis";
 import Historico from "./Pages/Historico/Historico";
 import OferecerCarona from "./Pages/OferecerCarona/OferecerCarona";
 
+import "./index.css"
 
 render(
   <BrowserRouter>

@@ -1,36 +1,24 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 
+
+import { Breadcrumb, Layout as LayoutAntd, Typography, theme } from 'antd';
+
+const { Title } = Typography;
+
+const { Header, Content, Footer } = LayoutAntd;
+
 const Layout = () => {
   return (
-    <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">login</Link>
-          </li>
-          <li>
-            <Link to="/buscar">buscar</Link>
-          </li>
-          <li>
-            <Link to="/ativas">ativas</Link>
-          </li>
-          <li>
-            <Link to="/disponiveis">disponiveis</Link>
-          </li>
-          <li>
-            <Link to="/historico">historico</Link>
-          </li>
-          <li>
-            <Link to="/oferecer">oferecer</Link>
-          </li>
-        </ul>
-      </nav>
-      <Outlet />
-    </>
+    <LayoutAntd className="layout" style={{height: "100vh"}}>
+      <Header>
+        <Title level={3} style={{"color": "white"}}>UFMG CARONAS</Title>
+      </Header>
+      <Content style={{ padding: '50px 50px' }}>
+        <Outlet/>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>Desenvolvido para disciplina De Engenharia de Software</Footer>
+    </LayoutAntd>
   );
 };
 
