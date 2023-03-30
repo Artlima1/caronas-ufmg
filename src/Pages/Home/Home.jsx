@@ -21,10 +21,8 @@ const useStyles = makeStyles({
 });
 
 
-
 const Home = () => {
   const classes = useStyles();
-
 
   return (
     <Space direction="vertical" size="large" style={{ width: "100%", height: "100%", "justify-content": "space-evenly" }}>
@@ -33,12 +31,6 @@ const Home = () => {
       </Button>
       <Button type="primary" block className={classes.homeButtonBlack} icon={<CarOutlined className={classes.homeButtonIcon}/>}>
         OFERECER
-      </Button>
-      <Button type="primary" block className={classes.homeButtonRed} icon={<CarryOutOutlined className={classes.homeButtonIcon}/>}>
-        ATIVAS
-      </Button>
-      <Button type="primary" block className={classes.homeButtonBlack} icon={<FieldTimeOutlined className={classes.homeButtonIcon}/>}>
-        HISTORICO
       </Button>
     </Space>
   );
