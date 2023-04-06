@@ -1,5 +1,5 @@
 import React from "react";
-import {getAllRides, getWithFilters } from '../../db/db'
+import {getAllRides, getWithFilters } from '../../utils/db'
 import { useEffect, useState } from "react";
 
 const FindRide = () => {

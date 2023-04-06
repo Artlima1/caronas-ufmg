@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "antd";
-import {createRide } from '../../db/db'
+import {createRide } from '../../utils/db'
 
 const OfferRide = () => {
 

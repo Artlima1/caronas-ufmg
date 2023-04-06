@@ -1,5 +1,19 @@
-import { collection, addDoc, getDocs, query, where, Timestamp, Firestore } from "firebase/firestore";
-import {db} from './firebase';
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, getDocs, query, where, Timestamp } from "firebase/firestore";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAHcXegAgDAem3mhdJidTzDA8RpMnLZRmY",
+  authDomain: "caronas-ufmg-engsw.firebaseapp.com",
+  projectId: "caronas-ufmg-engsw",
+  storageBucket: "caronas-ufmg-engsw.appspot.com",
+  messagingSenderId: "630386793604",
+  appId: "1:630386793604:web:837ee3dffb3cdfdaa976d1"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export const createRide = async (newRide) => {
     const docRef = await addDoc(collection(db, "rides"), {
@@ -26,9 +40,9 @@ export const getAllRides = async () => {
 
 
 /* 
-    Expects Array of objects {key, op, value}. 
-    Ex: [ {"to", "==", "UFMG"}, {"time", ">=", (new Date())} ]
-    For possible queries and opps, refer to https://firebase.google.com/docs/firestore/query-data/queries
+*    Expects Array of objects {key, op, value}. 
+*    Ex: [ {"to", "==", "UFMG"}, {"time", ">=", (new Date())} ]
+*    For possible queries and opps, refer to https://firebase.google.com/docs/firestore/query-data/queries
 */
 export const getWithFilters = async (filters) => {
     const collection_ref = collection(db, "rides");
