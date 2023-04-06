@@ -24,6 +24,12 @@ export const getAllRides = async () => {
     return rides;
 }
 
+
+/* 
+    Expects Array of objects {key, op, value}. 
+    Ex: [ {"to", "==", "UFMG"}, {"time", ">=", (new Date())} ]
+    For possible queries and opps, refer to https://firebase.google.com/docs/firestore/query-data/queries
+*/
 export const getWithFilters = async (filters) => {
     const collection_ref = collection(db, "rides");
 
