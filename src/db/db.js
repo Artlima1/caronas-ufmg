@@ -1,8 +1,7 @@
-import { collection, addDoc, getDocs, or } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where, Timestamp, Firestore } from "firebase/firestore";
 import {db} from './firebase';
 
 export const createRide = async (newRide) => {
-    console.log(newRide)
     const docRef = await addDoc(collection(db, "rides"), {
         owner: {
             name: newRide.owner.name,
@@ -10,7 +9,7 @@ export const createRide = async (newRide) => {
         },
         from: newRide.from,
         to: newRide.to,
-        time: newRide.time,
+        time: Timestamp.fromDate(newRide.time),
         seats: newRide.seats
     });
     return docRef;
@@ -19,19 +18,42 @@ export const createRide = async (newRide) => {
 export const getAllRides = async () => {
     const {docs} = await getDocs(collection(db, "rides"));
     const rides = docs.map((doc) => ({...doc.data(), id:doc.id }));
+    rides.forEach(ride => {
+        ride.time = ride.time.toDate();
+    });
     return rides;
 }
 
-export const getRides = async (filters) => {
-    const {docs} = await getDocs(collection(db, "rides"));
+export const getWithFilters = async (filters) => {
+    const collection_ref = collection(db, "rides");
 
-    const rides = docs.map((doc) => ({...doc.data(), id:doc.id }));
+    const params = []
 
-    const filteredRides = rides.filter((ride) =>
-        (!filters.from || (filters.from == ride.from)) &&
-        (!filters.to || (filters.to == ride.to)) &&
-        (!filters.time || (Date(filters.time) < Date(ride.time)))
-    );
+    filters.forEach(filter => {
+        console.log(filter)
+        if(filter.key=="time"){
+            filter.value = Timestamp.fromDate(filter.value)
+        }
+        console.log(filter)
+        params.push(where(filter.key, filter.op, filter.value))
+    });
 
-    return filteredRides;
+    const q = query(collection_ref, ...params);
+        
+    const doc_refs = await getDocs(q);
+
+    const rides = [];
+
+    doc_refs.forEach(ride => {
+        rides.push({
+            id: ride.id, 
+            ...ride.data()
+        })
+    });
+
+    rides.forEach(ride => {
+        ride.time = ride.time.toDate();
+    });
+
+    return rides;
 }
