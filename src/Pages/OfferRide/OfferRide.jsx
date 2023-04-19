@@ -1,21 +1,25 @@
 import React from "react";
 import { Button } from "antd";
-import {createRide } from '../../utils/db'
+import { createRide } from '../../utils/db'
+import { useAuth } from "../../utils/AuthProvider";
 
 const OfferRide = () => {
+
+  const { user } = useAuth();
 
   const createNew = async (e) => {
     e.preventDefault();
 
+
     const ride = {
       owner: {
-        name: "Olegario_UFMG",
-        phone: "44815",
+        name: user.name,
+        phone: user.phone,
       },
-      from: "Olegario",
+      from: "Lourdes",
       to: "UFMG",
       time: new Date(),
-      seats: 3,
+      seats: 2,
     }
 
     try{
