@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs, query, where, Timestamp } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, where, Timestamp, getDoc, doc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -76,4 +76,11 @@ export const getWithFilters = async (filters) => {
     });
 
     return rides;
+}
+
+export const getById = async id => {
+    const d = await getDoc(doc(db, "rides", id));
+    var ride = d.data();
+    ride.time = ride.time.toDate();
+    return ride;
 }
