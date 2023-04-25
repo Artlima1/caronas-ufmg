@@ -1,9 +1,11 @@
 import React from "react";
 import {getAllRides, getWithFilters } from '../../utils/db'
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FindRide = () => {
   const [rides, setRides] = useState([]);
+  const navigate = useNavigate();
 
   const fetchRides = async ()=> {
     try{
@@ -19,23 +21,22 @@ const FindRide = () => {
   const fetchFilteredRides = async ()=> {
     try{
       const currRides = await getWithFilters([
-        {
-          key: "to",
-          op: "==",
-          value: "UFMG"
-        },
-        {
-          key: "from",
-          op: "==",
-          value: "Olegario"
-        },
-        {
-          key: "time", 
-          op: ">=",
-          value: (new Date(2023, 3, 10))
-        },
+        // {
+        //   key: "to",
+        //   op: "==",
+        //   value: "UFMG"
+        // },
+        // {
+        //   key: "from",
+        //   op: "==",
+        //   value: "Olegario"
+        // },
+        // {
+        //   key: "time", 
+        //   op: ">=",
+        //   value: (new Date(2023, 3, 10))
+        // },
       ]);
-      console.log(currRides);
       setRides(currRides);
     }
     catch(e){
@@ -52,9 +53,9 @@ const FindRide = () => {
       {
         rides.map( ride => {
           return(
-            <li>
+            <button onClick={()=>navigate(`/informacoes/${ride.id}`)} style={{margin: "10px"}}>
               {ride.from} - {ride.to} ({ride.time.toUTCString()})
-            </li>
+            </button>
           )
         })
       }

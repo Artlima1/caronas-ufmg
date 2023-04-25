@@ -19,7 +19,6 @@ const formatDate = (date) => {
     const year = date.getFullYear();
     return (`${day}/${month}/${year}`);
   } catch (error) {
-    console.error(error);
     return "Invalid";
   }
 }
@@ -30,7 +29,6 @@ const formatTime = (date) => {
     const minutes = date.getMinutes() > 10 ? date.getMinutes() : `0${date.getMinutes()}`;
     return (`${hour}:${minutes}`);
   } catch (error) {
-    console.error(error);
     return "Invalid";
   }
 }
