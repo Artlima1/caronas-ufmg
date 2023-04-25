@@ -75,8 +75,8 @@ Neste sistema, qualquer usuário pode oferecer uma carona, passando as mesmas in
     - [x] Salvar informações do usuário localmente para uso em demais páginas. (Bernardo Braga)
     - [x] Sempre redirecionar para esta página quando não houverem dados do usuário. (Bernardo Braga)
 
-- [ ] **Eu, como usuário, quero poder entrar em contato diretamente com a pessoa oferecendo a carona que tenho interesse**
+- [x] **Eu, como usuário, quero poder entrar em contato diretamente com a pessoa oferecendo a carona que tenho interesse**
 	- [x] Criar página de carona específica, com as informações de uma carona. (Arthur Lima)
     - [x] Busca no banco de cados com base no ID. (Arthur Lima)
-    - [ ] Mostrar as informações da carona especificada pelo ID da rota. (Arthur Lima)
+    - [x] Mostrar as informações da carona especificada pelo ID da rota. (Arthur Lima)
     - [x] Botão de redirecionamento para o whatsapp usando o celular do usuário que ofereceu a carona. (Arthur Lima)
