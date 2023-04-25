@@ -59,7 +59,7 @@ const App = () => {
               }
             />
             <Route
-              path="informacoes"
+              path="informacoes/:id"
               element={
                 <ProtectedRoute>
                   <RideInfo />

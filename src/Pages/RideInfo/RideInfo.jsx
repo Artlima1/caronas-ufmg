@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Space, Descriptions, Button } from "antd";
 import { makeStyles } from "@mui/styles";
 import { getById } from "../../utils/db";
-
-const id = 'Avm28uYlS4FSsxO5zLza'
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   whatsappButton: {
@@ -39,6 +38,7 @@ const formatTime = (date) => {
 const RideInfo = () => {
   const [ride, setRide] = useState({});
   const classes = useStyles();
+  const {id} = useParams();
 
   const fetchRide = async () => {
     try {
