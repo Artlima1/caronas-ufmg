@@ -29,9 +29,11 @@ const OfferRide = () => {
     // e.preventDefault();
     // Should format date value before submit.
     const values = {
-      ...fieldsValue,
-      'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
-      'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
+      'from' : fieldsValue.from,
+      'to': fieldsValue.to,
+      'date-picker': fieldsValue.time_data.format('YYYY-MM-DD'),
+      'time-picker': fieldsValue.time_horario.format('HH:mm:ss'),
+      'seats' : fieldsValue.seats
     };
     console.log('Received values of form: ', values);
 
@@ -115,10 +117,11 @@ const OfferRide = () => {
           rules={[
             {
               required: true,
+              type: 'object',
               message: 'Selecione a data!',
             },
           ]}>
-            <DatePicker placeholder="Selecione a data"/>
+            <DatePicker placeholder="Selecione a data" format="YYYY-MM-DD"/>
         </Form.Item>
         <Form.Item 
           name="time_horario"
@@ -126,10 +129,11 @@ const OfferRide = () => {
           rules={[
             {
               required: true,
+              type: 'object',
               message: 'Selecione o horário!',
             },
           ]}>
-            <TimePicker placeholder="Selecione o horário"/>
+            <TimePicker placeholder="Selecione o horário" format="HH:mm:ss"/>
         </Form.Item>
         <Form.Item 
           name = "seats"
