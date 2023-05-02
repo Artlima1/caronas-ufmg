@@ -42,7 +42,7 @@ Neste sistema, qualquer usuário pode oferecer uma carona, passando as mesmas in
 - **Eu, como usuário, quero que o sistema calcule a melhor rota possível para a carona, disponibilizando a rota aos envolvidos e onde cada um entrará no carro**
 
 ## Sprint Backlog
-- [ ] **Tarefas iniciais (não pertencem a nenhuma história**
+- [ ] **Tarefas iniciais (não pertencem a nenhuma história)**
 	- [x] Criar projeto React e configurar ambiente. (Arthur Lima)
     - [ ] Clonar projeto e fazer as instalações de dependências. (Todos)
 	- [x] Criar projeto no Firebase, configurar FireStore e conectar ao projeto React. (Arthur Lima)
