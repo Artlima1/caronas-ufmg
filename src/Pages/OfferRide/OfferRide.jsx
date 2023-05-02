@@ -25,35 +25,12 @@ const OfferRide = () => {
 
   const [open, setOpen] = useState(false);
 
-  const onFinish = (fieldsValue) => {
-    // Should format date value before submit.
-    const rangeValue = fieldsValue['range-picker'];
-    const rangeTimeValue = fieldsValue['range-time-picker'];
-    const values = {
-      ...fieldsValue,
-      'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
-      'date-time-picker': fieldsValue['date-time-picker'].format('YYYY-MM-DD HH:mm:ss'),
-      'month-picker': fieldsValue['month-picker'].format('YYYY-MM'),
-      'range-picker': [rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')],
-      'range-time-picker': [
-        rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
-        rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
-      ],
-      'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
-    };
-    console.log('Received values of form: ', values);
-  };
-
-  const createNew =(fieldsValue) => {
-   
-  //const createNew = async (e) => {
-   // e.preventDefault();
-
+  const createNew = async (fieldsValue) => {
+    // e.preventDefault();
     // Should format date value before submit.
     const values = {
       ...fieldsValue,
       'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
-      'date-time-picker': fieldsValue['date-time-picker'].format('YYYY-MM-DD HH:mm:ss'),
       'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
     };
     console.log('Received values of form: ', values);
@@ -70,14 +47,14 @@ const OfferRide = () => {
     }
 
     try{
-      const id = createRide(ride);
+      const id = await createRide(ride);
       console.log(id);
     }
     catch(e) {
       console.error(e);
     };
 
-  }
+}
 
   return (
     <div>
@@ -133,15 +110,26 @@ const OfferRide = () => {
           </Select>
         </Form.Item>
         <Form.Item 
-          name="time"
-          label="Data e horário" 
+          name="time_data"
+          label="Data" 
           rules={[
             {
               required: true,
-              message: 'Selecione o a data e o horário!',
+              message: 'Selecione a data!',
             },
           ]}>
-            <DatePicker placeholder="Selecione o a data e o horário" showTime format="YYYY-MM-DD HH:mm:ss"/>
+            <DatePicker placeholder="Selecione a data"/>
+        </Form.Item>
+        <Form.Item 
+          name="time_horario"
+          label="Horário" 
+          rules={[
+            {
+              required: true,
+              message: 'Selecione o horário!',
+            },
+          ]}>
+            <TimePicker placeholder="Selecione o horário"/>
         </Form.Item>
         <Form.Item 
           name = "seats"
