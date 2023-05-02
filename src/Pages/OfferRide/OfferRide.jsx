@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { Select, Button, Form, DatePicker, InputNumber, TimePicker } from 'antd';
 import { createRide } from '../../utils/db'
 import { useAuth } from "../../utils/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const layout = {
   labelCol: {
@@ -25,6 +26,8 @@ const OfferRide = () => {
 
   const [open, setOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const createNew = async (fieldsValue) => {
     // e.preventDefault();
     // Should format date value before submit.
@@ -36,6 +39,7 @@ const OfferRide = () => {
       'seats' : fieldsValue.seats
     };
     console.log('Received values of form: ', values);
+    console.log(new Date())
 
     const ride = {
       owner: {
@@ -51,6 +55,9 @@ const OfferRide = () => {
     try{
       const id = await createRide(ride);
       console.log(id);
+      navigate(`/Home`);
+      // alert("An Online Computer Science"
+      // + "Portal for Geeks");
     }
     catch(e) {
       console.error(e);
