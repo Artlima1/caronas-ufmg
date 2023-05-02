@@ -49,7 +49,7 @@ Neste sistema, qualquer usuário pode oferecer uma carona, passando as mesmas in
     - [x] Criar página Home, dando navegabilidade para "Oferecer Carona" ou "Procurar Carona". (Arthur Lima)
 
 - [ ] **Eu, como usuário, quero oferecer vagas de caronas no meu carro**
-	- [ ] Criar página de oferecimento de carona, com formulário para: ida/volta, origem/destino, horário (dia e hora) e número de vagas. (Camila Braz)
+	- [x] Criar página de oferecimento de carona, com formulário para: ida/volta, origem/destino, horário (dia e hora) e número de vagas. (Camila Braz)
     - [ ] Opções de origem/destino são um select entre opções hard coded de regiões de BH. (Camila Braz)
     - [ ] Validação nos campos: horário no futuro. (Camila Braz)
     - [x] Pegar informações de nome e celular do usuário atual. (Camila Braz)
