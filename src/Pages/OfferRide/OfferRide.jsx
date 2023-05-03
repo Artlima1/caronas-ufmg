@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Select, Button, Form, DatePicker, InputNumber, TimePicker } from 'antd';
+import { Select, Button, Form, DatePicker, InputNumber, TimePicker, Modal } from 'antd';
 import { createRide } from '../../utils/db'
 import { useAuth } from "../../utils/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,9 @@ const tailLayout = {
 };
 const { Option } = Select;
 
+
+ 
+
 const OfferRide = () => {
 
   const { user } = useAuth();
@@ -27,6 +30,21 @@ const OfferRide = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+
+
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState('Carona cadastrada! Você será redirecionado para a página inicial');
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = async () => {
+    navigate(`/Home`);
+  };
+
+  const handleCancel = () => {
+    console.log('Clicked cancel button');
+    setOpen(false);
+  };
 
   const createNew = async (fieldsValue) => {
     // e.preventDefault();
@@ -39,8 +57,7 @@ const OfferRide = () => {
       'seats' : fieldsValue.seats
     };
     console.log('Received values of form: ', values);
-    console.log(new Date())
-
+  
     const ride = {
       owner: {
         name: user.name,
@@ -51,18 +68,15 @@ const OfferRide = () => {
       time: new Date(),
       seats: 2,
     }
-
     try{
       const id = await createRide(ride);
       console.log(id);
-      navigate(`/Home`);
-      // alert("An Online Computer Science"
-      // + "Portal for Geeks");
+      showModal();
+      
     }
     catch(e) {
       console.error(e);
     };
-
 }
 
   return (
@@ -157,6 +171,23 @@ const OfferRide = () => {
             Cadastrar carona
           </Button>
         </Form.Item>
+        <Modal
+        title="Ótimo!"
+        open={open}
+        cancelButtonProps={{ null:true }}
+       // onOk={handleOk}
+        footer={[
+          // <Button key="back" onClick={handleCancel}>
+          // </Button>,
+          <Button key="submit" type="primary"  onClick={handleOk}>
+            Ok
+          </Button>
+        ]}
+        confirmLoading={confirmLoading}
+        //onCancel={handleCancel}
+      >
+        <p>{modalText}</p>
+      </Modal>
       </Form>
     </Form.Provider> 
     </div>
