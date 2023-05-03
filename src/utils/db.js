@@ -26,7 +26,7 @@ export const createRide = async (newRide) => {
         time: Timestamp.fromDate(newRide.time),
         seats: newRide.seats
     });
-    return docRef;
+    return docRef.id;
 }
 
 export const getAllRides = async () => {
