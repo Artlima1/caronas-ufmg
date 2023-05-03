@@ -20,9 +20,6 @@ const tailLayout = {
 };
 const { Option } = Select;
 
-
- 
-
 const OfferRide = () => {
 
   const { user } = useAuth();
@@ -30,7 +27,6 @@ const OfferRide = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-
 
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Carona cadastrada! Você será redirecionado para a página inicial');
@@ -47,37 +43,31 @@ const OfferRide = () => {
   };
 
   const createNew = async (fieldsValue) => {
-    // e.preventDefault();
-    // Should format date value before submit.
-    const values = {
-      'from' : fieldsValue.from,
-      'to': fieldsValue.to,
-      'date-picker': fieldsValue.time_data.format('YYYY-MM-DD'),
-      'time-picker': fieldsValue.time_horario.format('HH:mm:ss'),
-      'seats' : fieldsValue.seats
-    };
-    console.log('Received values of form: ', values);
-  
     const ride = {
       owner: {
         name: user.name,
         phone: user.phone,
       },
-      from: "Lourdes",
-      to: "UFMG",
-      time: new Date(),
-      seats: 2,
-    }
-    try{
+      from: fieldsValue.from,
+      to: fieldsValue.to,
+      time: new Date(
+        fieldsValue.time_data.year(),
+        fieldsValue.time_data.month(),
+        fieldsValue.time_data.date(),
+        fieldsValue.time_horario.hour(),
+        fieldsValue.time_horario.minute()
+      ),
+      seats: fieldsValue.seats,
+    };
+    console.log(ride);
+    try {
       const id = await createRide(ride);
       console.log(id);
       showModal();
-      
-    }
-    catch(e) {
+    } catch (e) {
       console.error(e);
-    };
-}
+    }
+  };
 
   return (
     <div>
