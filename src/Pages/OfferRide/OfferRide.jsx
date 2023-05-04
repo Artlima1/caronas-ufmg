@@ -147,7 +147,13 @@ const OfferRide = () => {
               },
             ]}
           >
-            <DatePicker placeholder="Selecione a data" format="YYYY-MM-DD" />
+            <DatePicker
+              style={{
+                width: "100%",
+              }}
+              placeholder="Selecione a data"
+              format="YYYY-MM-DD"
+            />
           </Form.Item>
           <Form.Item
             name="time_horario"
@@ -160,9 +166,18 @@ const OfferRide = () => {
               },
             ]}
           >
-            <TimePicker placeholder="Selecione o horário" format="HH:mm:ss" />
+            <TimePicker
+              style={{
+                width: "100%",
+              }}
+              placeholder="Selecione o horário"
+              format="HH:mm:ss"
+            />
           </Form.Item>
           <Form.Item
+            style={{
+              width: "100%",
+            }}
             name="seats"
             label="Vagas"
             rules={[
@@ -172,7 +187,11 @@ const OfferRide = () => {
               },
             ]}
           >
-            <InputNumber />
+            <InputNumber
+              style={{
+                width: "100%",
+              }}
+            />
           </Form.Item>
           <Form.Item {...tailLayout}>
             <Button htmlType="submit" type="primary">
