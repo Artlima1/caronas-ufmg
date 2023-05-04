@@ -35,8 +35,8 @@ const OfferRide = () => {
 
   const navigate = useNavigate();
 
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState(
+  const [confirmLoading] = useState(false);
+  const [modalText] = useState(
     "Carona cadastrada! Você será redirecionado para a página inicial"
   );
   const showModal = () => {
@@ -183,11 +183,14 @@ const OfferRide = () => {
             rules={[
               {
                 required: true,
-                message: "Selecione a quantidade de vagas disponíveis!",
+                message:
+                  "Selecione a quantidade de vagas disponíveis! O valor deve estar entre 1 e 4",
               },
             ]}
           >
             <InputNumber
+              min={1}
+              max={4}
               style={{
                 width: "100%",
               }}
