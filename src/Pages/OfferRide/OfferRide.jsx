@@ -22,7 +22,7 @@ const layout = {
 };
 const tailLayout = {
   wrapperCol: {
-    offset: 8,
+    offset: 6,
     span: 16,
   },
 };
