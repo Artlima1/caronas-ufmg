@@ -55,7 +55,7 @@ const Login = () => {
           },
         ]}
       >
-        <Input />
+        <Input placeholder="Seu Nome Completo"/>
       </Form.Item>
   
       {/* Item de formulario para telefone */}
@@ -72,7 +72,7 @@ const Login = () => {
           }
         ]}
       >
-        <Input />
+        <Input placeholder="(XX) XXXXX-XXXX"/>
       </Form.Item>
   
       {/* Item de formulario para e-mail */}
@@ -88,9 +88,10 @@ const Login = () => {
             message: 'Insira um email válido!',
           }
         ]}
+        
       >
 
-        <Input />
+        <Input placeholder="exemplo@ufmg.br"/>
       </Form.Item>
   
       {/* Item de formulario para autenticar */}
