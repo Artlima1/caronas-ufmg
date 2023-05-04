@@ -7,10 +7,12 @@ import {
   InputNumber,
   TimePicker,
   Modal,
+  Radio,
 } from "antd";
 import { createRide } from "../../utils/db";
 import { useAuth } from "../../utils/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { regions } from "../../utils/variables";
 
 const layout = {
   labelCol: {
@@ -57,8 +59,8 @@ const OfferRide = () => {
         name: user.name,
         phone: user.phone,
       },
-      from: fieldsValue.from,
-      to: fieldsValue.to,
+      from: fieldsValue.type === "ida" ? fieldsValue.region : "UFMG",
+      to: fieldsValue.type === "ida" ? "UFMG" : fieldsValue.region,
       time: new Date(
         fieldsValue.time_data.year(),
         fieldsValue.time_data.month(),
@@ -92,50 +94,44 @@ const OfferRide = () => {
           }
         }}
       >
-        <Form
-          {...layout}
-          name="basicForm"
-          onFinish={createNew}
-          style={{
-            maxWidth: 600,
-          }}
-        >
+        <Form {...layout} name="basicForm" onFinish={createNew}>
           <Form.Item
-            name="from"
-            label="Partida"
+            style={{
+              width: "100%",
+            }}
+            name="type"
+            label="Tipo de carona"
             hasFeedback
             rules={[
               {
                 required: true,
-                message: "Selecione o Local de Partida!",
+                message: "Selecione o tipo de carona!",
               },
             ]}
           >
-            <Select placeholder="Selecione o Local de Partida">
-              <Option value="ufmg">UFMG</Option>
-              <Option value="olegario">Olegário</Option>
-              <Option value="raja">Raja</Option>
-              <Option value="lourdes">Lourdes</Option>
-            </Select>
+            <Radio.Group>
+              <Radio.Button value="ida">Ida</Radio.Button>
+              <Radio.Button value="volta">Volta</Radio.Button>
+            </Radio.Group>
           </Form.Item>
           <Form.Item
-            name="to"
-            label="Destino"
+            name="region"
+            label="Região"
             hasFeedback
             rules={[
               {
                 required: true,
-                message: "Selecione o Local de Destino!",
+                message: "Selecione a região!",
               },
             ]}
           >
-            <Select placeholder="Selecione o Local de Destino">
-              <Option value="ufmg">UFMG</Option>
-              <Option value="olegario">Olegário</Option>
-              <Option value="raja">Raja</Option>
-              <Option value="lourdes">Lourdes</Option>
+            <Select placeholder="Selecione a região">
+              {regions.map((region) => {
+                return <Option value={region.value}>{region.name}</Option>;
+              })}
             </Select>
           </Form.Item>
+
           <Form.Item
             name="time_data"
             label="Data"
