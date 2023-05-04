@@ -14,6 +14,13 @@ import { useAuth } from "../../utils/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { regions } from "../../utils/variables";
 
+import dayjs from "dayjs";
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return current && current < dayjs().endOf("day");
+};
+
 const layout = {
   labelCol: {
     span: 8,
@@ -144,6 +151,7 @@ const OfferRide = () => {
             ]}
           >
             <DatePicker
+              disabledDate={disabledDate}
               style={{
                 width: "100%",
               }}
