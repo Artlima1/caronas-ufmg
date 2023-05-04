@@ -2,10 +2,9 @@ import React from "react";
 import { useAuth } from "../../utils/AuthProvider";
 import { Button, Form, Input, InputNumber } from 'antd';
 
-
 const Login = () => {
   const {onLogin} =  useAuth();
-  
+
   const onFinish = (values) => {
     login(values.nome, values.telefone, values.email)
     console.log('Login success:', values);
@@ -15,13 +14,10 @@ const Login = () => {
   };
   
   const validateMessages = {
-    required: 'Por favor, informe o ${label}!',
+    required: 'Por favor, informe seu ${name}!',
     types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
-    },
-    number: {
-      range: '${label} must be between ${min} and ${max}',
+      email: 'Informe um ${name} válido!',
+      number: 'Informe um ${name} válido!',
     },
   };
   
@@ -40,7 +36,7 @@ const Login = () => {
         span: 8,
       }}
       wrapperCol={{
-        span: 14,
+        span: 16,
       }}
       style={{
         maxWidth: 600,
@@ -51,6 +47,7 @@ const Login = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      validateMessages={validateMessages}
     >
   
       {/* Item de formulario para nome */}
@@ -60,7 +57,6 @@ const Login = () => {
         rules={[
           {
             required: true,
-            message: 'Por favor, insira o seu nome!',
           },
         ]}
       >
@@ -74,7 +70,6 @@ const Login = () => {
         rules={[
           {
             required: true,
-            message: 'Por favor, insira o seu telefone!',
           },
         ]}
       >
@@ -88,7 +83,6 @@ const Login = () => {
         rules={[
           {
             required: true,
-            // message: 'Por favor, insira o seu e-mail!',
             type: 'email',
           },
         ]}
@@ -99,7 +93,7 @@ const Login = () => {
       {/* Item de formulario para autenticar */}
       <Form.Item
         wrapperCol={{
-          offset: 10,
+          offset: 12,
           span: 6,
         }}
       >
