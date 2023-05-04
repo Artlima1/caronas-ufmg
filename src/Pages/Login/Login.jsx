@@ -12,19 +12,11 @@ const Login = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-  
-  const validateMessages = {
-    required: 'Por favor, informe seu ${name}!',
-    types: {
-      email: 'Informe um ${name} válido!',
-      number: 'Informe um ${name} válido!',
-    },
-  };
-  
+
   const login = (x1, x2, x3) => {
         onLogin({
           name: x1, 
-          email: x2, 
+          email: x2,
           phone: x3
         });
       }
@@ -47,7 +39,6 @@ const Login = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
-      validateMessages={validateMessages}
     >
   
       {/* Item de formulario para nome */}
@@ -57,6 +48,10 @@ const Login = () => {
         rules={[
           {
             required: true,
+            message: 'Item obrigatório',
+          },{
+            pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
+            message: 'Insira um nome válido!'
           },
         ]}
       >
@@ -70,7 +65,11 @@ const Login = () => {
         rules={[
           {
             required: true,
-          },
+            message: 'Item obrigatório!'
+          },{
+            pattern: /\(?\d{2}\)?\s?\d{4,5}-?\d{4}/g,
+            message: 'Insira um telefone válido!'
+          }
         ]}
       >
         <Input />
@@ -83,10 +82,14 @@ const Login = () => {
         rules={[
           {
             required: true,
-            type: 'email',
-          },
+            message: 'Item obrigatório!',
+          },{
+            pattern: '^[a-z0-9](\.?[a-z0-9]){1,}@ufmg\.br$',
+            message: 'Insira um email válido!',
+          }
         ]}
       >
+
         <Input />
       </Form.Item>
   
