@@ -57,7 +57,7 @@ Neste sistema, qualquer usuário pode oferecer uma carona, passando as mesmas in
 
   - [x] Criar página de oferecimento de carona, com formulário para: ida/volta, origem/destino, horário (dia e hora) e número de vagas. (Camila Braz)
     - [x] Opções de origem/destino são um select entre opções hard coded de regiões de BH. (Camila Braz)
-    - [ ] Validação nos campos: horário no futuro. (Camila Braz)
+    - [x] Validação nos campos: horário no futuro. (Camila Braz)
     - [x] Pegar informações de nome e celular do usuário atual. (Camila Braz)
     - [x] Enviar carona criada para o banco de dados firebase. (Camila Braz)
     - [x] Exibir confirmação para usuário e redirecionar para home. (Camila Braz)
