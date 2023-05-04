@@ -17,8 +17,18 @@ import { regions } from "../../utils/variables";
 import dayjs from "dayjs";
 
 const disabledDate = (current) => {
+  // Can not select days before today
+  const day_aux = dayjs();
+  const day = day_aux.subtract(1, "day");
+  return current < day;
+};
+
+const disabledTime = (current) => {
+  let now_aux = dayjs();
+  const now = now_aux.format("HH:mm");
+  console.log(now);
   // Can not select days before today and today
-  return current && current < dayjs().endOf("day");
+  return current && current < now;
 };
 
 const layout = {
@@ -53,11 +63,6 @@ const OfferRide = () => {
   };
   const handleOk = async () => {
     navigate(`/Home`);
-  };
-
-  const handleCancel = () => {
-    console.log("Clicked cancel button");
-    setOpen(false);
   };
 
   const createNew = async (fieldsValue) => {
@@ -171,11 +176,15 @@ const OfferRide = () => {
             ]}
           >
             <TimePicker
+              disabledTime={disabledTime}
+              showTime={{
+                defaultValue: dayjs(),
+              }}
               style={{
                 width: "100%",
               }}
               placeholder="Selecione o horário"
-              format="HH:mm:ss"
+              format="HH:mm"
             />
           </Form.Item>
           <Form.Item
