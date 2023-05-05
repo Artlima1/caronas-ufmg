@@ -46,14 +46,14 @@ Neste sistema, qualquer usuário pode oferecer uma carona, passando as mesmas in
 
 ## Sprint Backlog
 
-- [ ] **Tarefas iniciais (não pertencem a nenhuma história)**
+- [x] **Tarefas iniciais (não pertencem a nenhuma história)**
 
   - [x] Criar projeto React e configurar ambiente. (Arthur Lima)
-    - [ ] Clonar projeto e fazer as instalações de dependências. (Todos)
+    - [x] Clonar projeto e fazer as instalações de dependências. (Todos)
   - [x] Criar projeto no Firebase, configurar FireStore e conectar ao projeto React. (Arthur Lima)
     - [x] Criar página Home, dando navegabilidade para "Oferecer Carona" ou "Procurar Carona". (Arthur Lima)
 
-- [ ] **Eu, como usuário, quero oferecer vagas de caronas no meu carro**
+- [x] **Eu, como usuário, quero oferecer vagas de caronas no meu carro**
 
   - [x] Criar página de oferecimento de carona, com formulário para: ida/volta, origem/destino, horário (dia e hora) e número de vagas. (Camila Braz)
     - [x] Opções de origem/destino são um select entre opções hard coded de regiões de BH. (Camila Braz)
@@ -77,10 +77,10 @@ Neste sistema, qualquer usuário pode oferecer uma carona, passando as mesmas in
   - [ ] Na página de busca de carona, realizar a filtragem das caronas de VOLTA, filtrando também pelo horário, refletindo o filtro na lista de caronas exibidas. (Clara Martins)
   - [ ] Fazer o elemento carona ser clicável e redirecionar para página de carona especifica e colocar o ID da selecionada no PARAM da rota. (Clara Martins)
 
-- [ ] **Eu, como usuário, quero que apenas membros da comunidade UFMG possam usar o sistema de caronas**
+- [x] **Eu, como usuário, quero que apenas membros da comunidade UFMG possam usar o sistema de caronas**
 
-  - [ ] Criar uma página inicial, com um formulário de informações para o usuário: nome, email e celular. (Bernardo Braga)
-    - [ ] Validar campos: celular completo com DDD; email @ufmg.br. (Bernardo Braga)
+  - [x] Criar uma página inicial, com um formulário de informações para o usuário: nome, email e celular. (Bernardo Braga)
+    - [x] Validar campos: celular completo com DDD; email @ufmg.br. (Bernardo Braga)
     - [x] Salvar informações do usuário localmente para uso em demais páginas. (Bernardo Braga)
     - [x] Sempre redirecionar para esta página quando não houverem dados do usuário. (Bernardo Braga)
 
