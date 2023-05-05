@@ -84,8 +84,7 @@ const OfferRide = () => {
     };
     console.log(ride);
     try {
-      const id = await createRide(ride);
-      console.log(id);
+      await createRide(ride);
       showModal();
     } catch (e) {
       console.error(e);
@@ -218,16 +217,12 @@ const OfferRide = () => {
             title="Ótimo!"
             open={open}
             cancelButtonProps={{ null: true }}
-            // onOk={handleOk}
             footer={[
-              // <Button key="back" onClick={handleCancel}>
-              // </Button>,
               <Button key="submit" type="primary" onClick={handleOk}>
                 Ok
               </Button>,
             ]}
             confirmLoading={confirmLoading}
-            //onCancel={handleCancel}
           >
             <p>{modalText}</p>
           </Modal>

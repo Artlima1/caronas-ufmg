@@ -1,25 +1,20 @@
 import React from "react";
 import { useAuth } from "../../utils/AuthProvider";
-import { Button, Form, Input, InputNumber } from 'antd';
+import { Button, Form, Input } from 'antd';
 
 const Login = () => {
   const {onLogin} =  useAuth();
 
   const onFinish = (values) => {
-    login(values.nome, values.telefone, values.email)
-    console.log('Login success:', values);
+    onLogin({
+      name: values.nome, 
+      phone: values.telefone,
+      email: values.email,
+    });
   };
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.error('Failed:', errorInfo);
   };
-
-  const login = (x1, x2, x3) => {
-        onLogin({
-          name: x1, 
-          email: x2,
-          phone: x3
-        });
-      }
   
   return (
     <Form
@@ -41,7 +36,6 @@ const Login = () => {
       autoComplete="off"
     >
   
-      {/* Item de formulario para nome */}
       <Form.Item
         label="Nome"
         name="nome"
@@ -58,7 +52,6 @@ const Login = () => {
         <Input placeholder="Seu Nome Completo"/>
       </Form.Item>
   
-      {/* Item de formulario para telefone */}
       <Form.Item
         label="Telefone"
         name="telefone"
@@ -75,7 +68,6 @@ const Login = () => {
         <Input placeholder="(XX) XXXXX-XXXX"/>
       </Form.Item>
   
-      {/* Item de formulario para e-mail */}
       <Form.Item
         label="E-mail UFMG"
         name="email"
@@ -94,7 +86,6 @@ const Login = () => {
         <Input placeholder="exemplo@ufmg.br"/>
       </Form.Item>
   
-      {/* Item de formulario para autenticar */}
       <Form.Item
         wrapperCol={{
           offset: 12,
@@ -111,24 +102,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
-//const Login = () => {
-//  const {onLogin} =  useAuth();
-//
-//  const login = (e) => {
-//    e.preventDefault();
-//    onLogin({
-//      name: nome,
-//      email: "arthurdeolima@ufmg.br",
-//      phone: "31992489918"
-//    });
-//  }
-
-//  return (
-//   <div>
-//      <button onClick={login}>Login</button>
-//    </div>
-//  );
-//};
-//export default Login;
