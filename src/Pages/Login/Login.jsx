@@ -92,7 +92,7 @@ const Login = () => {
           span: 6,
         }}
       >
-        <Button onclick={login} type="primary" htmlType="submit">
+        <Button onclick={onFinish} type="primary" htmlType="submit">
           Autenticar
         </Button>
       </Form.Item>
