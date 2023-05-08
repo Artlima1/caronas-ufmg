@@ -2,6 +2,10 @@ import React from "react";
 import {getAllRides, getWithFilters } from '../../utils/db'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Select, DatePicker } from 'antd';
+import { TimePicker } from 'antd';
+import dayjs from 'dayjs';
+import { regions } from "../../utils/variables";
 
 const FindRide = () => {
   const [rides, setRides] = useState([]);
@@ -18,25 +22,10 @@ const FindRide = () => {
     }
   }
 
-  const fetchFilteredRides = async ()=> {
+  const fetchFilteredRides = async (params)=> {
     try{
-      const currRides = await getWithFilters([
-        {
-          key: "to",
-          op: "==",
-          value: filters.to || "",
-        },
-        {
-          key: "from",
-          op: "==",
-          value: filters.from || "",
-        },
-        {
-          key: "time", 
-          op: ">=",
-          value: filters.time || new Date(),
-        },
-      ]);
+      console.log(params)
+      const currRides = await getWithFilters(params);
       setRides(currRides);
     }
     catch(e){
@@ -44,14 +33,42 @@ const FindRide = () => {
     }
   }
 
-  const handleFilterChange = (event) => {
-    const { name, value } = event.target;
+  const handleFilterChange = (name, value) => {
     setFilters({ ...filters, [name]: value });
+    console.log("currFilters ", filters)
   };
 
   const handleFilterSubmit = (event) => {
     event.preventDefault();
-    fetchFilteredRides();
+    var params = []
+    if(filters.to) {
+      params.push({
+        key: "to",
+        op: "==",
+        value: filters.to
+      })
+    }
+    if(filters.from) {
+      params.push({
+        key: "from",
+        op: "==",
+        value: filters.from
+      })
+    }
+    if(filters.hour || filters.day) {
+      params.push({
+        key: "time",
+        op: ">=",
+        value: new Date(
+          filters.day ? filters.day.year() : (new Date()).getFullYear() ,
+          filters.day ? filters.day.month() : (new Date()).getMonth() ,
+          filters.day ? filters.day.date() : (new Date()).getDate() ,
+          filters.hour ? filters.hour.hour() : 0,
+          filters.hour ? filters.hour.minute() : 0
+        ),
+      })
+    }
+    fetchFilteredRides(params);
   };
 
   useEffect(()=>{
@@ -61,9 +78,26 @@ const FindRide = () => {
   return (
     <div>
       <form onSubmit={handleFilterSubmit}>
-        <input type="text" name="to" onChange={handleFilterChange} placeholder="Partida" style={{padding: '1%',borderRadius: '10px 0px 0px 10px'}} />
-        <input type="text" name="from" onChange={handleFilterChange} placeholder="Destino" style={{padding: '1%'}}/>
-        <input type="datetime-local" name="time" onChange={handleFilterChange} style={{padding: '1%',borderRadius: '0px 10px 10px 0px'}} />
+      <Select
+      placeholder="Partida"
+      style={{
+        width: 120,
+      }}
+      onChange={(value)=>handleFilterChange('from', value)}
+      options={regions}
+      allowClear
+    />
+    <Select
+      placeholder="Destino"
+      style={{
+        width: 120,
+      }}
+      onChange={(value)=>handleFilterChange('to', value)}
+      options={regions}
+      allowClear
+    />
+     <DatePicker onChange={(value)=>handleFilterChange('day', value)} />
+     <TimePicker onChange={(value)=>handleFilterChange('hour', value)} defaultOpenValue={dayjs('00:00', 'HH:mm')} />
         <button type="submit">Filtrar</button>
       </form>
       {

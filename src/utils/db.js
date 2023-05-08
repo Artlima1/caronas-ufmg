@@ -54,7 +54,6 @@ export const getWithFilters = async (filters) => {
         if(filter.key=="time"){
             filter.value = Timestamp.fromDate(filter.value)
         }
-        console.log(filter)
         params.push(where(filter.key, filter.op, filter.value))
     });
 

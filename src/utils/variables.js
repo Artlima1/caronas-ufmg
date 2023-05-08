@@ -1,22 +1,22 @@
 export const regions = [
     {
-        name: 'Raja', 
+        label: 'Raja', 
         value: "raja"
     },
     {
-        name: 'Nova Lima', 
+        label: 'Nova Lima', 
         value: "nova_lima"
     },
     {
-        name: 'Savassi', 
+        label: 'Savassi', 
         value: "savassi"
     },
     {
-        name: 'Olegário',
+        label: 'Olegário',
         value: "olegario"
     },
     {
-        name: 'Cidade Nova',
+        label: 'Cidade Nova',
         value: "cidade_nova"
     }
 ]
